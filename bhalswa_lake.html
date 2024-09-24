@@ -12,7 +12,7 @@
     <div class="sm:h-screen flex flex-col">
         <!-- Top Section with Meters -->
         <div style="height: 20%;" class="sm:h-1/5 flex bg-blue-600 w-full text-center">
-            <a href="/bhalswa"><img class="object-contain sm:h-full h-40 pl-3" src="/static/img/delhi/bhalswa_lake.jpg" alt=""></a>
+            <a href="/bhalswa"><img class="object-contain sm:h-full h-40 pl-3" src="static/img/delhi/bhalswa_lake.jpg" alt=""></a>
             <div class="flex justify-center items-center w-full text-center text-white text-3xl font-bold">
                 <p>Bhalswa Lake</p>
             </div>
@@ -20,11 +20,11 @@
         </div>
         <div style="height: 5%;" class="bg-red-600"> </div>
         <!-- Bottom Section with Map and Buttons -->
-        <div style="height: 75%;" class="sm:flex sm:h-4/5">
+        <div style="height: 75%;" class="sm:flex sm:h-4/5 " >
             <!-- Map on the Left -->
-            <div class="sm:w-4/5 w-full  h-screen sm:h-full flex">
+            <div class="sm:w-4/5 w-full sm:p-0 p-10 h-screen sm:h-full flex bg-red-600" >
                 <iframe id="mapFrame" src="bhalswa_lake_map.html" class="w-full h-full" frameborder="0"></iframe>
-                <div class="absolute w-4/5  float-right"><img src="/static/img/gradient_legend_with_title.png" alt=""></div>
+                <div class="absolute w-4/5  float-right"><img src="static/img/gradient_legend_with_title.png" alt=""></div>
             </div>
 
             <!-- Buttons on the Right -->
@@ -137,6 +137,8 @@
         readingFrame.style.display = 'none'; // Hide the reading frame
         dispimgFrame.src = "display_images_Aquatic waste.html";
         dispimgFrame.style.display = "block";
+        topFunction();
+
     });
     
     algaeBtn.addEventListener('click', function() {
@@ -144,17 +146,25 @@
         readingFrame.style.display = 'none'; // Hide the reading frame
         dispimgFrame.src = "display_images_Algae.html";
         dispimgFrame.style.display = "block";
+        topFunction();
+
     });
 
     tempBtn.addEventListener('click', function() {
         mapFrame.src = 'map.html'; // Replace with the new map file
         readingFrame.style.display = 'block'; // Hide the reading frame
         dispimgFrame.style.display = "none";
+        topFunction();
     });
     
         // aquaticWasteBtn.addEventListener('click', function() {
         //     mapFrame.src = 'bhalswa_lake_aqu.html'; // Replace with the new map file
         // });
+
+        function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
     </script>
 </body>
 
