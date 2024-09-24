@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body >
+    <div class="sm:h-screen flex flex-col">
+        <!-- Top Section with Meters -->
+        <div style="height: 20%;" class="sm:h-1/5 flex bg-blue-600 w-full text-center">
+            <a href="/bhalswa"><img class="object-contain sm:h-full h-40 pl-3" src="/static/img/delhi/bhalswa_lake.jpg" alt=""></a>
+            <div class="flex justify-center items-center w-full text-center text-white text-3xl font-bold">
+                <p>Bhalswa Lake</p>
+            </div>
+            <div class="align-bottom justify-end items-end flex text-white text-xs sm:text-lg">last updated : 19/09/2024 08:35</div>
+        </div>
+        <div style="height: 5%;" class="bg-red-600"> </div>
+        <!-- Bottom Section with Map and Buttons -->
+        <div style="height: 75%;" class="sm:flex sm:h-4/5">
+            <!-- Map on the Left -->
+            <div class="sm:w-4/5 w-full  h-screen sm:h-full flex">
+                <iframe id="mapFrame" src="bhalswa_lake_map.html" class="w-full h-full" frameborder="0"></iframe>
+                <div class="absolute w-4/5  float-right"><img src="/static/img/gradient_legend_with_title.png" alt=""></div>
+            </div>
+
+            <!-- Buttons on the Right -->
+            <div class="h-full flex flex-col justify-center items-center space-y-4 p-4 sm:w-1/4">
+                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700">Ph Data</button>
+                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700">TDS Value</button>
+                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700">Dissolved Oxygen</button>
+                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700" id="tempBtn">Temperature</a></button>
+                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700"> Water Depth</button>
+                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700"> Water Quality</button>
+                <button class="text-xl font-bold w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700" id="algaeBtn">Algae</a></button>
+                <button class="text-xl font-bold w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">Oil spill</button>
+                <button class="text-xl font-bold w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700" id="aquaticWasteBtn">Aquatic Waste</button>
+            </div>
+        </div>
+    </div>
+
+<!-- JavaScript to Change Map -->
+
+
+    <iframe id="dis_img" src="display_images_Aquatic waste.html" class="w-full h-screen" frameborder="0"></iframe>
+
+    <div id="reading" class="h-screen flex flex-col">
+    
+        <div class="h-3/4 flex justify-evenly items-center">
+            <!-- Temperature Meter -->
+            <div class="flex flex-col items-center">
+                <!-- Temperature Meter -->
+                <div class="w-20 h-60 bg-gray-300 rounded-full relative flex items-end">
+                    <div class="bg-red-500 rounded-full w-full" style="height: 70%;"></div>
+                </div>
+            
+                <!-- Temperature Value and Label -->
+                <div class="mt-4 text-center">
+                    <span class="text-2xl font-bold text-red-700">35°C</span>
+                    <p class="text-sm text-gray-600">Temperature</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <!-- Humidity Meter -->
+                <div class="w-20 h-60 bg-gray-300 rounded-full relative flex items-end">
+                    <!-- Adjust the height percentage to reflect the humidity level -->
+                    <div class="bg-blue-500 rounded-full w-full" style="height: 80%;"></div>
+                </div>
+            
+                <!-- Humidity Value and Label -->
+                <div class="mt-4 text-center">
+                    <span class="text-2xl font-bold text-blue-700">80%</span>
+                    <p class="text-sm text-gray-600">Humidity</p>
+                </div>
+            </div>
+    
+            <!-- Dissolved Oxygen Meter -->
+            <div class="flex flex-col items-center">
+                <div class="w-20 h-60 bg-gray-300 rounded-full relative flex items-end">
+                    <div class="bg-blue-500 rounded-full w-full" style="height: 60%;"></div>
+                </div>
+                <div class="mt-4 text-center">
+                    <span class="text-2xl font-bold text-blue-700">6 mg/L</span>
+                    <p class="text-sm text-gray-600">Dissolved Oxygen</p>
+                </div>
+            </div>
+    
+            <div class="flex flex-col items-center">
+                <!-- pH Meter -->
+                <div class="w-20 h-60 bg-gray-300 rounded-full relative flex items-end">
+                    <!-- Adjust the height percentage to reflect the pH value -->
+                    <div class="bg-green-500 rounded-full w-full" style="height: 50%;"></div>
+                </div>
+            
+                <!-- pH Value and Label -->
+                <div class="mt-4 text-center">
+                    <span class="text-2xl font-bold text-green-700">7.0</span>
+                    <p class="text-sm text-gray-600">pH Level</p>
+                </div>
+            </div>
+    
+            <div class="flex flex-col items-center">
+                <!-- Turbidity Meter -->
+                <div class="w-20 h-60 bg-gray-300 rounded-full relative flex items-end">
+                    <!-- Adjust the height percentage to reflect the turbidity level -->
+                    <div class="bg-yellow-500 rounded-full w-full" style="height: 50%;"></div>
+                </div>
+            
+                <!-- Turbidity Value and Label -->
+                <div class="mt-4 text-center">
+                    <span class="text-2xl font-bold text-yellow-700">50 NTU</span>
+                    <p class="text-sm text-gray-600">Turbidity</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Select the button and the iframe
+    const aquaticWasteBtn = document.getElementById('aquaticWasteBtn');
+    const algaeBtn = document.getElementById('algaeBtn');
+    const tempBtn = document.getElementById('tempBtn');
+
+    
+    const mapFrame = document.getElementById('mapFrame');
+    const readingFrame = document.getElementById('reading'); dis_img
+    const dispimgFrame = document.getElementById('dis_img');
+    dispimgFrame.style.display = "none";
+
+    // Add event listener to the button to change the iframe src and hide the reading frame
+    aquaticWasteBtn.addEventListener('click', function() {
+        mapFrame.src = 'bhalswa_lake_aqu.html'; // Replace with the new map file
+        readingFrame.style.display = 'none'; // Hide the reading frame
+        dispimgFrame.src = "display_images_Aquatic waste.html";
+        dispimgFrame.style.display = "block";
+    });
+    
+    algaeBtn.addEventListener('click', function() {
+        mapFrame.src = 'bhalswa_lake_alg.html'; // Replace with the new map file
+        readingFrame.style.display = 'none'; // Hide the reading frame
+        dispimgFrame.src = "display_images_Algae.html";
+        dispimgFrame.style.display = "block";
+    });
+
+    tempBtn.addEventListener('click', function() {
+        mapFrame.src = 'map.html'; // Replace with the new map file
+        readingFrame.style.display = 'block'; // Hide the reading frame
+        dispimgFrame.style.display = "none";
+    });
+    
+        // aquaticWasteBtn.addEventListener('click', function() {
+        //     mapFrame.src = 'bhalswa_lake_aqu.html'; // Replace with the new map file
+        // });
+    </script>
+</body>
+
+</html>
