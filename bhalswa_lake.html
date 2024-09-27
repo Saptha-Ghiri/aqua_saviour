@@ -12,31 +12,33 @@
     <div class="sm:h-screen flex flex-col">
         <!-- Top Section with Meters -->
         <div style="height: 20%;" class="sm:h-1/5 flex bg-blue-600 w-full text-center">
-            <a href="/bhalswa"><img class="object-contain sm:h-full h-40 pl-3" src="static/img/delhi/bhalswa_lake.jpg" alt=""></a>
+            <a href="bhalswa_lake.html"><img class="object-contain sm:h-full h-40 pl-3" src="static/img/delhi/bhalswa_lake.jpg" alt=""></a>
             <div class="flex justify-center items-center w-full text-center text-white text-3xl font-bold">
                 <p>Bhalswa Lake</p>
             </div>
             <div class="align-bottom justify-end items-end flex text-white text-xs sm:text-lg">last updated : 19/09/2024 08:35</div>
         </div>
-        <div style="height: 5%;" class="bg-red-600"> </div>
+        <div style="height: 5%;" class="bg-red-600 flex flex-row items-center px-3 py-2 space-x-2">
+            <div class="bg-white rounded-full p-2"></div><p class="text-white">New aquatic waste detected</p>
+        </div>
         <!-- Bottom Section with Map and Buttons -->
         <div style="height: 75%;" class="sm:flex sm:h-4/5 " >
             <!-- Map on the Left -->
             <div class="sm:w-4/5 w-full sm:p-0 p-10 h-screen sm:h-full flex bg-red-600" >
                 <iframe id="mapFrame" src="bhalswa_lake_map.html" class="w-full h-full" frameborder="0"></iframe>
-                <div class="absolute w-4/5  float-right"><img src="static/img/gradient_legend_with_title.png" alt=""></div>
+                <div class="absolute w-4/5 float-right"><img id="legend" class="hidden" src="static/img/gradient_legend_with_title.png" alt=""></div>
             </div>
 
             <!-- Buttons on the Right -->
             <div class="h-full flex flex-col justify-center items-center space-y-4 p-4 sm:w-1/4">
-                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700">Ph Data</button>
-                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700">TDS Value</button>
-                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700">Dissolved Oxygen</button>
+                <button class="text-xl font-bold w-full cursor-not-allowed bg-gray-500 text-white py-2 px-4 rounded-lg ">Ph Data</button>
+                <button class="text-xl font-bold w-full cursor-not-allowed bg-gray-500 text-white py-2 px-4 rounded-lg ">TDS Value</button>
+                <button class="text-xl font-bold w-full cursor-not-allowed bg-gray-500 text-white py-2 px-4 rounded-lg ">Dissolved Oxygen</button>
                 <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700" id="tempBtn">Temperature</a></button>
-                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700"> Water Depth</button>
-                <button class="text-xl font-bold w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700"> Water Quality</button>
+                <button class="text-xl font-bold w-full cursor-not-allowed bg-gray-500 text-white py-2 px-4 rounded-lg "> Water Depth</button>
+                <button class="text-xl font-bold w-full cursor-not-allowed bg-gray-500 text-white py-2 px-4 rounded-lg "> Water Quality</button>
                 <button class="text-xl font-bold w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700" id="algaeBtn">Algae</a></button>
-                <button class="text-xl font-bold w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">Oil spill</button>
+                <button class="text-xl font-bold w-full cursor-not-allowed bg-gray-500 text-white py-2 px-4 rounded-lg ">Oil spill</button>
                 <button class="text-xl font-bold w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700" id="aquaticWasteBtn">Aquatic Waste</button>
             </div>
         </div>
@@ -124,12 +126,15 @@
     const aquaticWasteBtn = document.getElementById('aquaticWasteBtn');
     const algaeBtn = document.getElementById('algaeBtn');
     const tempBtn = document.getElementById('tempBtn');
+    const legend = document.getElementById('legend');
 
     
     const mapFrame = document.getElementById('mapFrame');
     const readingFrame = document.getElementById('reading'); dis_img
     const dispimgFrame = document.getElementById('dis_img');
     dispimgFrame.style.display = "none";
+    legend.style.display = "none";
+
 
     // Add event listener to the button to change the iframe src and hide the reading frame
     aquaticWasteBtn.addEventListener('click', function() {
@@ -137,6 +142,7 @@
         readingFrame.style.display = 'none'; // Hide the reading frame
         dispimgFrame.src = "display_images_Aquatic waste.html";
         dispimgFrame.style.display = "block";
+        legend.style.display = "none";
         topFunction();
 
     });
@@ -146,6 +152,7 @@
         readingFrame.style.display = 'none'; // Hide the reading frame
         dispimgFrame.src = "display_images_Algae.html";
         dispimgFrame.style.display = "block";
+        legend.style.display = "none";
         topFunction();
 
     });
@@ -154,6 +161,7 @@
         mapFrame.src = 'map.html'; // Replace with the new map file
         readingFrame.style.display = 'block'; // Hide the reading frame
         dispimgFrame.style.display = "none";
+        legend.style.display = "block";
         topFunction();
     });
     
